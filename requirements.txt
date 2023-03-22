@@ -1,0 +1,10 @@
+cs50
+Flask
+Flask-Session
+requests
+app.py
+templates-folder
+styles.css
+functions.py
+pathology.db
+README.md

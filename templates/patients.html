@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Patients
+{% endblock %}
+
+{% block main %}
+
+<h3 style="color:#426CEB"><strong>New Case</strong></h3>
+
+<form method="post" action="/patients" class="form-inline">
+              <div>
+                        <select class="form-inline-control form-select-lg mb-3" name="doctor_name" style="border-color: #20A0D8; height: 44px">
+                            <option selected="false" disabled="disabled"><strong>Choose doctor</strong></option>
+                            {% for doctor in doctors_names %}
+                            <option value="{{doctor.name}}" >{{doctor.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="text" autocomplete="off" id="patient_name" name="patient_name" autofocus class="form-inline input-lg" size="50px" style="height: 44px; border-radius: 8px; border-color: #20A0D8; text-align: center;" placeholder="Patient's name">
+                        <select class="form-inline-control form-select-lg mb-3" name="study_type" style="border-color: #20A0D8; height: 44px">
+                            <option selected="false" disabled="disabled"><strong>Type of Study</strong></option>
+                            {% for study in study_types %}
+                            <option value="{{study}}">{{study}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="email" autocomplete="off" id="email" name="email" autofocus class="form-inline input-lg" size="50px" style="height: 44px; border-radius: 8px; border-color: #20A0D8; text-align: center;" placeholder="Email provided" required />
+              </div>
+              <button type="submit" class="bg-custom-dark btn  btn-lg" style="align-self: start; color: white" >Register New Study</button>
+</form>
+
+
+{% endblock %}

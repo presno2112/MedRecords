@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search By Doctor
+{% endblock %}
+
+{% block main %}
+<h3 style="color:#426CEB"><strong>Type Patient's Name</strong></h3>
+<p></p>
+<input autocomplete="off" autofocus placeholder="Patient" type="text" size="40" width="20">
+
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col"> Patient</th>
+            <th scope="col"> Email</th>
+            <th scope="col"> Doctor in Charge</th>
+            <th scope="col"> Study Type</th>
+            <th scope="col"> Price</th>
+            <th scope="col"> Month</th>
+            <th scope="col"> Day</th>
+            <th scope="col"> Year</th>
+        </tr>
+    </thead>
+    <tbody id="body"></tbody>
+</table>
+
+<script>
+
+    let input = document.querySelector('input');
+    input.addEventListener('input', async function() {
+        let response = await fetch('/search_name/search?q=' + input.value);
+        let answers = await response.json();
+        let html = '';
+        for (let i in answers) {
+            html += '<tr>'
+            let name = answers[i].name.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + name + '</td>';
+            let email = answers[i].email.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + email + '</td>';
+            let doctorsname = answers[i].doctorsName.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + doctorsname + '</td>';
+            let type = answers[i].type.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + type + '</td>';
+            let price = answers[i].price
+            html += '<td> $' + price + '</td>';
+            let month = answers[i].month.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + month + '</td>';
+            let day = answers[i].day.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + day + '</td>';
+            let year = answers[i].year.replace('<', '&lt;').replace('&', '&amp;');
+            html += '<td>' + year + '</td>';
+            html += '</tr>'
+
+        }
+        document.querySelector('tbody').innerHTML = html;
+
+    });
+</script>
+
+{% endblock %}

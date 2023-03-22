@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Doctors
+{% endblock %}
+
+{% block main %}
+
+<h3 style="color:#426CEB"><strong>New Doctor</strong></h3>
+
+<form method="post" action="/doctors" class="form-inline">
+              <div>
+                        <input type="text" autocomplete="off" id="doctorsname" name="doctorsname" autofocus class="form-inline input-lg" size="50px" style="height: 44px; border-radius: 8px; border-color: #20A0D8; text-align: center;" placeholder="Doctor's name">
+                        <select class="form-inline-control form-select-lg mb-3" name="specialty" style="border-color: #20A0D8; height: 44px">
+                            <option selected="false" disabled="disabled"><strong>Choose specialty</strong></option>
+                            {% for specialty in specialties %}
+                            <option value="{{specialty}}">{{specialty}}</option>
+                            {% endfor %}
+                        </select>
+              </div>
+              <button type="submit" class="bg-custom-dark btn  btn-lg" style="align-self: start; color: white" >Register New Doctor</button>
+</form>
+
+
+{% endblock %}
